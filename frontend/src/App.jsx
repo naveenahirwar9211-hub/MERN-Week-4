@@ -13,14 +13,14 @@ export default function App() {
   }, []);
 
   const fetchPosts = async () => {
-    const res = await axios.get('http://localhost:5000/api/posts');
+    const res = await axios.get('https://mern-week-4-xrf4.onrender.com/api/posts');
     setPosts(res.data);
   };
 
   // Create Post
   const handleCreatePost = async (e) => {
     e.preventDefault();
-    await axios.post('http://localhost:5000/api/posts', { author, content });
+    await axios.post('https://mern-week-4-xrf4.onrender.com/api/posts', { author, content });
     setAuthor('');
     setContent('');
     fetchPosts(); // Refresh feed
@@ -28,14 +28,14 @@ export default function App() {
 
   // Like Post
   const handleLike = async (id) => {
-    await axios.post(`http://localhost:5000/api/posts/${id}/like`);
+    await axios.post(`https://mern-week-4-xrf4.onrender.com/api/posts/${id}/like`);
     fetchPosts();
   };
 
   // Submit Comment
   const handleComment = async (id) => {
     if (!commentText[id]) return;
-    await axios.post(`http://localhost:5000/api/posts/${id}/comment`, { comment: commentText[id] });
+    await axios.post(`https://mern-week-4-xrf4.onrender.com/api/posts/${id}/comment`, { comment: commentText[id] });
     setCommentText({ ...commentText, [id]: '' });
     fetchPosts();
   };
